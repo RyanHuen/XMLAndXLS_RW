@@ -1,5 +1,5 @@
 
-package ryan;
+package ryan.xml_to_xls;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import ryan.read.ReadFromXML;
+import ryan.write.WriteTOExcel;
 
 /**
  * 读取每个国家的strings和中文strings比较，寻找出没有进行翻译的内容

@@ -1,5 +1,5 @@
 
-package ryan;
+package ryan.read;
 
 import java.io.File;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import jxl.Workbook;
 import jxl.WorkbookSettings;
 
 public class ReadFromExcel {
-    public Map<String, String> mapFromExcel = new HashMap<>();
+    private Map<String, String> mapFromExcel = new HashMap<>();
     private File mFile;
 
     public ReadFromExcel(File file) {
@@ -35,7 +35,7 @@ public class ReadFromExcel {
         try {
             // t.xls为要读取的excel文件名
             WorkbookSettings workbookSettings = new WorkbookSettings();
-            book = Workbook.getWorkbook(mFile,workbookSettings);
+            book = Workbook.getWorkbook(mFile, workbookSettings);
             // 获得第一个工作表对象(ecxel中sheet的编号从0开始,0,1,2,3,....)
             sheet = book.getSheet(page);
             // // 获取左上角的单元格
