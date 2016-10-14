@@ -1,9 +1,12 @@
 package ryan.xls_to_property;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.OutputStream;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import ryan.read.ReadFromExcel;
@@ -15,7 +18,7 @@ public class GenerateProperties {
     /**
      * 生成的property文件的路径
      */
-    public static final String PROPERTIES_FILE_OUTPUT_PATH = "/home/ryanhuenwork/Desktop/tv_devices.property";
+    public static final String PROPERTIES_FILE_OUTPUT_PATH = "/home/ryanhuenwork/Desktop/tv_devices.properties";
     /**
      * 从哪个excel文件中读取
      */
@@ -31,20 +34,29 @@ public class GenerateProperties {
     public static void main(String[] args) {
         ReadFromExcel readFromExcel = new ReadFromExcel(new File(READ_FROM_EXCEL_FILE_PATH));
         Map<String, String> fromXLS = readFromExcel.readExcel(0, 1, 2);
-        PrintWriter printWriter = null;
+        Properties properties = new Properties();
+
+        Set<String> keys = fromXLS.keySet();
+        for (String key : keys) {
+            properties.setProperty(key, fromXLS.get(key));
+        }
+        File outPutFile = new File(PROPERTIES_FILE_OUTPUT_PATH);
         try {
-            File outPutFile = new File(PROPERTIES_FILE_OUTPUT_PATH);
             outPutFile.createNewFile();
-            printWriter = new PrintWriter(outPutFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Set<String> keys = fromXLS.keySet();
-        for (String key : keys) {
-            printWriter.append(key).append(" = ").append(fromXLS.get(key)).append("\n");
+        try {
+            OutputStream outputStream = new FileOutputStream(outPutFile);
+            properties.store(outputStream, "null");
+            outputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        printWriter.flush();
-        printWriter.close();
+
 
     }
 }
