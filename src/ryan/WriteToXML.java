@@ -61,7 +61,7 @@ public class WriteToXML {
 
 //        rootElement.addAttribute("name", "recent_from_file_list_chinese"); //给根节点添加参数
         for (String key : keys) {
-            if (containKeyToContinue(key)) {
+            if (!containKeyToContinue(key)) {
                 Element e = rootElement.addElement("string");
                 e.addAttribute("name", key);
                 e.setText(mapToWrite.get(key));
@@ -76,16 +76,13 @@ public class WriteToXML {
 
     }
 
+    /**
+     * 不包含数组中指定的某些key的字符串，因为有些可能已经翻译好添加过了
+     * @param key
+     * @return
+     */
     private static boolean containKeyToContinue(String key) {
-        /**
-         *     <string name="infos_phoenixos">以 Android 為基礎的個人電腦系統</string>
-         <string name="app_slogen">CZ 技術產品</string>
-         <string name="other_chaozhuo_application">其他 CZ 應用程式</string>
-         <string name="infos_filemanager">像 PC 一樣地管理檔案</string>
-         <string name="infos_browser_pad">專為大畫面設計的瀏覽器</string>
-         <string name="infos_browser_phone">簡潔而有效率的瀏覽器</string>
-         <string name="infos_text_editor">簡潔而有效率的文字編輯器</string>
-         */
+
         String[] strings = {"download_other_app",
                 "open_other_app"};
         for (String s : strings) {

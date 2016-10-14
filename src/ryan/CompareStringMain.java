@@ -14,10 +14,18 @@ import java.util.Set;
  * @author ryanhuenwork
  */
 public class CompareStringMain {
+    /**
+     * 需要进行对比的中文字符串文件strings.xml
+     */
+    public static final String STRING_FILE_PATH_ZH_CN = "/home/ryanhuenwork/Documents/resources/values_cou/values-zh-rCN/strings.xml";
+    /**
+     * 要把数据写入的excel文件所在的路径，不包括excel文件名称
+     */
+    public static final String OUTPUT_EXCEL_FILE_PATH = "/home/ryanhuenwork/Documents/resources/lost/";
 
     //values-zh-rCN     values-ar
     public static void main(String[] args) throws IOException {
-        String cnStringFilePath = "/home/ryanhuenwork/Documents/resources/values_cou/values-zh-rCN/strings.xml";
+        String cnStringFilePath = STRING_FILE_PATH_ZH_CN;
         Map<String, String> cnMaps = getCountryStrings(
                 cnStringFilePath);
         Set<String> cnKeys = cnMaps.keySet();
@@ -41,7 +49,7 @@ public class CompareStringMain {
                         outPutValues.add(cnMaps.get(key));
                     }
                 }
-                WriteTOExcel.writeToExcelDouble("/home/ryanhuenwork/Documents/resources/lost/" +
+                WriteTOExcel.writeToExcelDouble(OUTPUT_EXCEL_FILE_PATH +
                         f.getName() + ".xls", outPutKeys, outPutValues, 0);
             }
 

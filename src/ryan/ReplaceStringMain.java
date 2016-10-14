@@ -8,18 +8,14 @@ import java.util.Map;
  * Created by ryanhuenwork on 16-9-29.
  */
 public class ReplaceStringMain {
-    /*
-    other_chaozhuo_application
-app_slogen
-infos_browser_phone
-infos_browser_pad
-infos_filemanager
-infos_text_editor
-infos_phoenixos
 
+    /**
+     * 从excel文件中读出数据以后，写入到xml文件中
      */
+    public static final String STRING_XML_FILE_OUTPUT_PATH = "/home/ryanhuenwork/Documents/resources/encodeRigth";
+
     public static void main(String[] args) {
-        File file = new File("/home/ryanhuenwork/Documents/resources/encodeRigth");
+        File file = new File(STRING_XML_FILE_OUTPUT_PATH);
         File[] files = file.listFiles();
         for (File excelFile : files) {
             ReadFromExcel readFromExcel = new ReadFromExcel(excelFile);
