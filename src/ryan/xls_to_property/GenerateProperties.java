@@ -25,7 +25,7 @@ public class GenerateProperties {
     public static final String READ_FROM_EXCEL_FILE_PATH = "/home/ryanhuenwork/Desktop/tv_device.xls";
 
     /**
-     * 写出到.property文件，形式：
+     * 写出到.properties文件，形式：
      * <p>
      * content = content
      *
@@ -38,7 +38,7 @@ public class GenerateProperties {
 
         Set<String> keys = fromXLS.keySet();
         for (String key : keys) {
-            properties.setProperty(key, fromXLS.get(key));
+            properties.setProperty(key.toLowerCase(), fromXLS.get(key).toLowerCase());
         }
         File outPutFile = new File(PROPERTIES_FILE_OUTPUT_PATH);
         try {
