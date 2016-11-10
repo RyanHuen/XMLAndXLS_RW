@@ -12,7 +12,7 @@ import ryan.write.WriteTOExcel;
  */
 public class ReadStringAndWrite {
     /**
-     * 需要读取的中文字符串文件strings.xml
+     * 需要读取的字符串文件strings.xml
      */
     public static final String STRING_FILE_PATH_ZH_CN = "/home/ryanhuencompany/Documents/values-zh-rCN/strings.xml";
     /**

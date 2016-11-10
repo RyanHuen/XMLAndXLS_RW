@@ -19,9 +19,27 @@ import ryan.write.WriteToXML;
 public class DeleteFromXML {
 
     /**
-     * 从excel文件中读出数据以后，写入到xml文件中
+     * 指定res目录，遍历其内部的strings.xml进行删除字符串
      */
-    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuencompany/Documents/explorer/res";
+    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuencompany/Documents/explorer";
+
+    public static final String[] DELETE_KEYS = {"tips",
+            "app_update_dlg_update_description",
+            "app_update_tip_error_version_ignored",
+            "app_update_download_notification_desc",
+            "app_update_dlg_title",
+            "app_update_patch_notification_desc",
+            "app_update_dlg_cb_text",
+            "app_update_dlg_do_not_update",
+            "app_update_tip_failed_to_load_check_for_update_file",
+            "app_update_tip_already_up_to_date",
+            "app_update_dlg_version_and_size",
+            "app_update_warn_download_manager_disabled",
+            "app_update_dlg_update_now",
+            "app_update_tip_error_update_already_in_process",
+            "app_update_tip_error_no_network",
+            "app_update_tip_error_handling_ret_data",
+    };
 
     public static void main(String[] args) {
         //app的values目录集
@@ -52,19 +70,13 @@ public class DeleteFromXML {
     }
 
     public static boolean isTheKeyYouWantToDel(String key) {
-        String[] deleteKeys = {"browser_phone",
-                "browser_pad",
-                "filemanager",
-                "text_editor",
-                "phoenix_os"
-        };
-        List<String> deleteList = new ArrayList<>(Arrays.asList(deleteKeys));
+
+        List<String> deleteList = new ArrayList<>(Arrays.asList(DELETE_KEYS));
         if (deleteList.contains(key)) {
             return true;
         } else {
             return false;
         }
-
     }
 
     public static ArrayList<String> stringsFilePathList = new ArrayList<>();

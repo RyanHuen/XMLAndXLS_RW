@@ -18,28 +18,27 @@ import ryan.write.WriteTOExcel;
  */
 public class CompareStringMain {
     /**
-     * 需要进行对比的中文字符串文件strings.xml
+     * 要把没有翻译过的字符串写出去的excel文件所在路径，不包括excel文件名称
      */
-    public static final String STRING_FILE_PATH_ZH_CN = "/home/ryanhuenwork/Documents/resources/values_cou/values-zh-rCN/strings.xml";
+    public static final String OUTPUT_EXCEL_FILE_PATH = "/home/ryanhuencompany/Desktop/Untitled Folder";
     /**
-     * 要把数据写入的excel文件所在的路径，不包括excel文件名称
+     * 指定从项目中拷贝出来的res目录的位置,不包含res
      */
-    public static final String OUTPUT_EXCEL_FILE_PATH = "/home/ryanhuenwork/Documents/resources/lost/";
+    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuencompany/Desktop/Untitled Folder";
 
     //values-zh-rCN     values-ar
     public static void main(String[] args) throws IOException {
-        String cnStringFilePath = STRING_FILE_PATH_ZH_CN;
+        String cnStringFilePath = ANDROID_STRINGS_FILE_PATH + "/res/values-zh-rCN/strings.xml";
         Map<String, String> cnMaps = getCountryStrings(
                 cnStringFilePath);
         Set<String> cnKeys = cnMaps.keySet();
-        File file = new File("/home/ryanhuenwork/Documents/resources/values_cou/");
-        File[] files = file.listFiles();
-        for (File f : files) {
-            File stringsFile = new File(f.getAbsoluteFile() + File.separator + "strings.xml");
-            if (!stringsFile.getAbsolutePath().equals(cnStringFilePath)) {
+        File file = new File(ANDROID_STRINGS_FILE_PATH);
+        listFileToSearchStringXML(file);
+        for (File f : stringsFileList) {
+            if (!f.getAbsolutePath().equals(cnStringFilePath)) {
                 //表明当前遍历到的文件不是CN语言
-                Map<String, String> dstCountryMap = getCountryStrings(stringsFile.getAbsolutePath());
-                System.out.println("当前语言：" + f.getName());
+                Map<String, String> dstCountryMap = getCountryStrings(f.getAbsolutePath());
+                System.out.println("当前语言：" + f.getParentFile().getName());
                 List<String> outPutKeys = new ArrayList<>();
                 List<String> outPutValues = new ArrayList<>();
                 for (String key : cnKeys) {
@@ -52,8 +51,8 @@ public class CompareStringMain {
                         outPutValues.add(cnMaps.get(key));
                     }
                 }
-                WriteTOExcel.writeToExcelDouble(OUTPUT_EXCEL_FILE_PATH +
-                        f.getName() + ".xls", outPutKeys, outPutValues, 0);
+                WriteTOExcel.writeToExcelDouble(OUTPUT_EXCEL_FILE_PATH + File.separator +
+                        f.getParentFile().getName().substring(f.getParentFile().getName().indexOf("-") + 1) + ".xls", outPutKeys, outPutValues, 0);
             }
 
         }
@@ -65,6 +64,22 @@ public class CompareStringMain {
         File cnStrings = new File(filePath);
         ReadFromXML cnReadFromXML = new ReadFromXML(cnStrings);
         return cnReadFromXML.getMaps();
+    }
+
+    public static List<File> stringsFileList = new ArrayList<>();
+
+    public static void listFileToSearchStringXML(File file) {
+        File[] file1 = file.listFiles();
+        for (File f : file1) {
+            if (f.isDirectory()) {
+                listFileToSearchStringXML(f);
+            } else {
+                if (f.getName().trim().equals("strings.xml")) {
+                    stringsFileList.add(f);
+                }
+            }
+
+        }
     }
 
 }
