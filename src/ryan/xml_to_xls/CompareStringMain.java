@@ -20,11 +20,11 @@ public class CompareStringMain {
     /**
      * 要把没有翻译过的字符串写出去的excel文件所在路径，不包括excel文件名称
      */
-    public static final String OUTPUT_EXCEL_FILE_PATH = "/home/ryanhuencompany/Desktop/Untitled Folder";
+    public static final String OUTPUT_EXCEL_FILE_PATH = "/home/ryanhuencompany/Documents/explorer/out";
     /**
      * 指定从项目中拷贝出来的res目录的位置,不包含res
      */
-    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuencompany/Desktop/Untitled Folder";
+    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuencompany/Documents/explorer/";
 
     //values-zh-rCN     values-ar
     public static void main(String[] args) throws IOException {

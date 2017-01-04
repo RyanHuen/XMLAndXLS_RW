@@ -14,11 +14,11 @@ public class ReadStringAndWrite {
     /**
      * 需要读取的字符串文件strings.xml
      */
-    public static final String STRING_FILE_PATH_ZH_CN = "/home/ryanhuencompany/Documents/values-zh-rCN/strings.xml";
+    public static final String STRING_FILE_PATH_ZH_CN = "/home/ryanhuencompany/Documents/explorer/strings.xml";
     /**
      * 要把数据写入的excel文件所在的路径，不包括excel文件名称
      */
-    public static final String OUTPUT_EXCEL_FILE_PATH = "/home/ryanhuencompany/Documents/test.xls";
+    public static final String OUTPUT_EXCEL_FILE_PATH = "/home/ryanhuencompany/Documents/explorer/test.xls";
 
     public static void main(String[] args) {
         ReadFromXML readFromXML = new ReadFromXML(new File(STRING_FILE_PATH_ZH_CN));

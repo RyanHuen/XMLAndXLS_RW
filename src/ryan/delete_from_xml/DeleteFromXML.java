@@ -21,24 +21,35 @@ public class DeleteFromXML {
     /**
      * 指定res目录，遍历其内部的strings.xml进行删除字符串
      */
-    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuencompany/Documents/explorer";
+    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuencompany/Documents/explorer/merge/";
 
-    public static final String[] DELETE_KEYS = {"tips",
-            "app_update_dlg_update_description",
-            "app_update_tip_error_version_ignored",
-            "app_update_download_notification_desc",
-            "app_update_dlg_title",
-            "app_update_patch_notification_desc",
-            "app_update_dlg_cb_text",
-            "app_update_dlg_do_not_update",
-            "app_update_tip_failed_to_load_check_for_update_file",
-            "app_update_tip_already_up_to_date",
-            "app_update_dlg_version_and_size",
-            "app_update_warn_download_manager_disabled",
-            "app_update_dlg_update_now",
-            "app_update_tip_error_update_already_in_process",
-            "app_update_tip_error_no_network",
-            "app_update_tip_error_handling_ret_data",
+    public static final String[] DELETE_KEYS = {  "phone_sort_size_s_l",
+            "installed",
+            "add_to_desktop_shorcut",
+            "recent_file_loading_tips",
+            "phone_sort_size_l_s",
+            "phone_sort_date_new_old",
+            "content_loading",
+            "phone_sort_type",
+            "phone_sort_z_a",
+            "plear_read",
+            "downloaded",
+            "image_damaged",
+            "no_datahint",
+            "ess_app",
+            "clear_smb_confirm",
+            "clear_recent_handle_smb",
+            "network_error",
+            "prompt_smb_file_read_only_info",
+            "download_other_app",
+            "classical_mode_change_tips",
+            "phone_sort_a_z",
+            "browse_only",
+            "network_location",
+            "open_other_app",
+            "is_cancel_download",
+            "phone_sort_date_old_new",
+            "uninstall_application"
     };
 
     public static void main(String[] args) {
@@ -107,3 +118,4 @@ public class DeleteFromXML {
         return name.substring(0, pos);
     }
 }
+

@@ -1,12 +1,16 @@
 package ryan.write;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
+import ryan.xml_to_xls.entity.MergeString;
 
 public class WriteTOExcel {
     /**
@@ -69,5 +73,37 @@ public class WriteTOExcel {
             book.close();
         } catch (Exception e) {
         }
+    }
+
+    /**
+     * 把 {@link ryan.xml_to_xls.entity.MergeString}对象写出到Excel中
+     *
+     * @param path     excel文件
+     * @param entities 需要写出去的entity列表
+     * @param page     写到第几个sheet中 0开头
+     */
+    public static void writeEntityToExcel(String path, List<MergeString> entities, int page) {
+        File file = new File(path);
+        try {
+            WritableWorkbook writableWorkbook = Workbook.createWorkbook(file);
+            WritableSheet sheet = writableWorkbook.createSheet("sheet" + page, page);
+            for (int i = 0; i < entities.size(); i++) {
+                MergeString mergeString = entities.get(i);
+                sheet.addCell(new Label(0, i, mergeString.key));
+                sheet.addCell(new Label(1, i, mergeString.firstCountry));
+                sheet.addCell(new Label(2, i, mergeString.secondCountry));
+            }
+            // 写入数据
+            writableWorkbook.write();
+            // 关闭文件
+            writableWorkbook.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (RowsExceededException e) {
+            e.printStackTrace();
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }
+
     }
 }
