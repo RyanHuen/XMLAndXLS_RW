@@ -25,4 +25,8 @@ public class GetAllCountry {
         WriteTOExcel.writeToExcelSingle(countryCodeXlsToWrite, countryList, 1);
     }
 
+    public static void main(String[] args) {
+        getAllCountryByPath(new File("/home/ryanhuencompany/Documents/explorer/res"), "/home/ryanhuencompany/Documents/explorer/res/test.xls");
+    }
+
 }
