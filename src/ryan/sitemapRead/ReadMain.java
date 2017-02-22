@@ -4,17 +4,25 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by ryanhuencompany on 17-2-15.
  */
 public class ReadMain {
-    private final static String OUTPUT_URLS = "/home/ryanhuencompany/Blog/test/urls.txt";
+    private final static String OUTPUT_URLS = "/home/ryanhuencompany/Blog/hexo/urls.txt";
 
     public static void main(String[] args) {
-        SiteMapRead siteMapRead = new SiteMapRead(new File("/home/ryanhuencompany/Blog/test/.deploy_git/sitemap.xml"));
+        SiteMapRead siteMapRead = new SiteMapRead(new File("/home/ryanhuencompany/Blog/hexo/.deploy_git/sitemap.xml"));
         List<String> mUrls = siteMapRead.getSiteMapUrls();
+        List<SortEntity> mEntities=new ArrayList<>();
+        for (int i = 0; i < mUrls.size(); i++) {
+            mEntities.add(new SortEntity(mUrls.get(i)));
+        }
+        Collections.sort(mEntities);
         BufferedWriter bufferedWriter=null;
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(OUTPUT_URLS));
