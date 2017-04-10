@@ -7,7 +7,7 @@ import java.io.File;
  */
 public class GetSrcFile {
     public static void main(String[] args) {
-        File file = new File("/home/ryanhuen/Project/src");
+        File file = new File("/home/ryanhuen/Project/Browser/src");
         if (file.exists() && file.isDirectory()) {
             searchSubSrcDir(file);
             System.out.println("+++++++++++++++++++++++");
@@ -29,7 +29,7 @@ public class GetSrcFile {
                 continue;
             } else {
                 if (!subFile.getAbsolutePath().contains("test")&&!subFile.getAbsolutePath().contains("/out/")) {
-                    System.out.println("<sourceFolder url=\"file://$MODULE_DIR$" + subFile.getAbsolutePath().substring(26) + "\" isTestSource=\"false\" generated=\"true\" />");
+                    System.out.println("<sourceFolder url=\"file://$MODULE_DIR$" + subFile.getAbsolutePath().substring(34) + "\" isTestSource=\"false\"/>");
                 }
             }
         }
@@ -43,7 +43,7 @@ public class GetSrcFile {
             if (subFile.isDirectory()) {
                 searchSubJarFile(subFile);
             } else if (!subFile.isDirectory() && subFile.getAbsolutePath().endsWith(".jar")) {
-                System.out.println("<sourceFolder url=\"file://$MODULE_DIR$" + subFile.getAbsolutePath().substring(26) + "\" isTestSource=\"false\" generated=\"true\" />");
+                System.out.println("<sourceFolder url=\"file://$MODULE_DIR$" + subFile.getAbsolutePath().substring(34) + "\" isTestSource=\"false\" generated=\"true\" />");
             } else {
                 continue;
             }

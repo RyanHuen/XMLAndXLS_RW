@@ -25,30 +25,16 @@ public class DispersionXls2Xml {
     /**
      * 指定读取xls文件的目录
      */
-    public static final String STRING_XLS_FILE_FROM_PATH = "/home/ryanhuencompany/Desktop/Delivery_28L_20161108/";
+    public static final String STRING_XLS_FILE_FROM_PATH = "/home/ryanhuen/Documents/explorer/lenovo";
     /**
      * 指定从项目中拷贝出来的res目录的位置
      */
-    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuencompany/Documents/explorer";
+    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuen/Documents/explorer";
     /**
      * 指定需要从excel文件中读取的字符串的key
      */
-    public static final String[] LIST_NEED_TO_READ = {"app_update_dlg_tip_file_already_downloaded",
-            "app_update_dlg_update_description",
-            "app_update_tip_error_version_ignored",
-            "app_update_download_notification_desc",
-            "app_update_dlg_title",
-            "app_update_patch_notification_desc",
-            "app_update_dlg_cb_text",
-            "app_update_dlg_do_not_update",
-            "app_update_tip_failed_to_load_check_for_update_file",
-            "app_update_tip_already_up_to_date",
-            "app_update_dlg_version_and_size",
-            "app_update_warn_download_manager_disabled",
-            "app_update_dlg_update_now",
-            "app_update_tip_error_update_already_in_process",
-            "app_update_tip_error_no_network",
-            "app_update_tip_error_handling_ret_data",
+    public static final String[] LIST_NEED_TO_READ = {
+            "crash_dlg_default_app_nam"
     };
 
     public static void main(String[] args) {
@@ -61,11 +47,12 @@ public class DispersionXls2Xml {
             String fileName = getNameWithoutExtension(excelFile.getName());
             //读取xls中的内容
             ReadFromExcel readFromExcel = new ReadFromExcel(excelFile);
-            Map<String, String> excelMaps = readFromExcel.readExcel(0, 2, 1, new ArrayList<String>(Arrays.asList(LIST_NEED_TO_READ)));
+            Map<String, String> excelMaps = readFromExcel.readExcel(0, 0, 2, new ArrayList<String>(Arrays.asList(LIST_NEED_TO_READ)));
             //根据xls的名称和遍历来的strings.xml文件的路径进行对比，合适的语言就往里面写内容
             Set<String> keys = stringsFilePathList.keySet();
             for (String each : keys) {
-                if (each.lastIndexOf(fileName) != -1 && each.lastIndexOf(fileName) != 4) {
+                String countryValue = "values-" + fileName;
+                if (each.equals(countryValue)) {
                     try {
                         WriteToXML.appendToXML(stringsFilePathList.get(each), excelMaps);
                     } catch (IOException e) {

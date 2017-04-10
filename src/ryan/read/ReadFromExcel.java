@@ -2,6 +2,7 @@
 package ryan.read;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,49 @@ public class ReadFromExcel {
     public ReadFromExcel(File file) {
         mFile = file;
     }
+
+    /**
+     * 读取Excel文件中的某个sheet，只读取单独一列
+     *
+     * @param page 读取第几个sheet(ecxel中sheet的编号从0开始,0,1,2,3,....)
+     * @param col1 读取哪一列的内容（一般指的是key所在列,从0开始）
+     * @return
+     */
+    public List readExcel(int page, int col1) {
+        List<String> country = new ArrayList<>();
+        int i;
+        Sheet sheet;
+        Workbook book;
+        Cell cell1;
+        try {
+            // t.xls为要读取的excel文件名
+            WorkbookSettings workbookSettings = new WorkbookSettings();
+            book = Workbook.getWorkbook(mFile, workbookSettings);
+            // 获得第一个工作表对象(ecxel中sheet的编号从0开始,0,1,2,3,....)
+            sheet = book.getSheet(page);
+            // // 获取左上角的单元格
+            // cell1 = sheet.getCell(0, 1);
+            // System.out.println("标题：" + cell1.getContents());
+
+            i = 0;
+            while (true) {
+                // 获取每一行的单元格
+                cell1 = sheet.getCell(col1, i);// （列，行）
+                System.out.print(cell1.getContents());
+                // cell3 = sheet.getCell(2, i);
+                if ("".equals(cell1.getContents())) // 如果读取的数据为空
+                    break;
+                country.add(cell1.getContents().trim());
+                i++;
+            }
+
+            book.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return country;
+    }
+
 
     /**
      * 读取Excel文件中的某个sheet，并转换成map集合

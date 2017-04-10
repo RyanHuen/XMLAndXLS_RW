@@ -23,11 +23,11 @@ public class AppendStringMain {
     /**
      * 指定读取xls文件的目录
      */
-    public static final String STRING_XLS_FILE_FROM_PATH = "/home/ryanhuencompany/Desktop/Delivery_28L_20161108";
+    public static final String STRING_XLS_FILE_FROM_PATH = "/home/ryanhuen/Documents/explorer/lenovo";
     /**
      * 指定从项目中拷贝出来的res目录的位置
      */
-    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuencompany/Documents/explorer";
+    public static final String ANDROID_STRINGS_FILE_PATH = "/home/ryanhuen/Documents/explorer";
 
     public static void main(String[] args) {
         File androidStringRoot = new File(ANDROID_STRINGS_FILE_PATH);   //app的res目录
@@ -39,11 +39,12 @@ public class AppendStringMain {
             String fileName = getNameWithoutExtension(excelFile.getName());
             //读取xls中的内容
             ReadFromExcel readFromExcel = new ReadFromExcel(excelFile);
-            Map<String, String> excelMaps = readFromExcel.readExcel(0, 2, 1);
+            Map<String, String> excelMaps = readFromExcel.readExcel(0, 0, 2);
             //根据xls的名称和遍历来的strings.xml文件的路径进行对比，合适的语言就往里面写内容
             Set<String> keys = stringsFilePathList.keySet();
             for (String each : keys) {
-                if (each.lastIndexOf(fileName) != -1 && each.lastIndexOf(fileName) != 4) {
+                String countryValue="values-"+fileName;
+                if (each.equals(countryValue)) {
                     try {
                         WriteToXML.appendToXML(stringsFilePathList.get(each), excelMaps);
                     } catch (IOException e) {

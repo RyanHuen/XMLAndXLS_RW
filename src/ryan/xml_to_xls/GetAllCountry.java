@@ -26,7 +26,7 @@ public class GetAllCountry {
     }
 
     public static void main(String[] args) {
-        getAllCountryByPath(new File("/home/ryanhuencompany/Documents/explorer/res"), "/home/ryanhuencompany/Documents/explorer/res/test.xls");
+        getAllCountryByPath(new File("/home/ryanhuen/Documents/explorer/res"), "/home/ryanhuen/Documents/explorer/res/test.xls");
     }
 
 }
