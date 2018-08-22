@@ -1,5 +1,5 @@
 
-package ryan.read;
+package tech.ryanhuen.base;
 
 import org.dom4j.Attribute;
 import org.dom4j.Document;
@@ -10,19 +10,19 @@ import org.dom4j.io.SAXReader;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-public class ReadFromXML {
-    private HashMap<String, String> mapFromStrings = new HashMap<>();
+public class XMLReader {
     private SAXReader reader = new SAXReader();
     private File mFile;
-    private Set<String> keys;
 
-    public ReadFromXML(File file) {
+    public XMLReader(File file) {
         mFile = file;
     }
 
-    private void readXML() {
+    public Map<String, String> readXMLContent() {
+        HashMap<String, String> contentMaps = new HashMap<>();
         if (mFile.exists()) {
             Document document = null;
             try {
@@ -37,21 +37,15 @@ public class ReadFromXML {
                 Attribute attr = element.attribute(0);
                 String key = attr.getData().toString().trim();
                 String value = element.getStringValue().trim();
-                mapFromStrings.put(key, value);
+                contentMaps.put(key, value);
             }
         }
-        keys = mapFromStrings.keySet();
+        return contentMaps;
     }
 
     public Set<String> getKeys() {
-        this.readXML();
-        return keys;
-    }
-
-    public HashMap getMaps() {
-        this.readXML();
-        return mapFromStrings;
-
+        Map<String, String> contentMaps = this.readXMLContent();
+        return contentMaps.keySet();
     }
 
 }

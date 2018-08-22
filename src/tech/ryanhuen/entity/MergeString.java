@@ -1,4 +1,4 @@
-package ryan.xml_to_xls.entity;
+package tech.ryanhuen.entity;
 
 /**
  * Created by ryanhuencompany on 17-1-4.

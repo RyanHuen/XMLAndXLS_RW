@@ -1,4 +1,4 @@
-package ryan.utils;
+package tech.ryanhuen.utils;
 
 import com.sun.istack.internal.Nullable;
 
